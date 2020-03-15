@@ -1,0 +1,24 @@
+<h1 class="pageName">Add a New Category</h1>
+<form class="example-form">
+    <form [formGroup]="addCategoryForm" (ngSubmit)="addCategory()">
+        <table align="center">
+            <tr>
+                <th>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Category Name</mat-label>
+                        <input matInput type="text"  formControlName="category_name">
+                    </mat-form-field>
+                </th>
+            </tr>
+
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <a class="btn btn-outline-danger" href="/cancel" role="button">Cancel</a>
+                </div>
+            </div>
+        </table>
+      </form>
+</form>

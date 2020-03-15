@@ -1,4 +1,5 @@
-<button type="button" class="btn btn-outline-purple"routerLink="/add">Add Book</button>
+<button type="button" class="btn btn-outline-green" routerLink="/add">Add Book</button>
+<button type="button" class="btn btn-outline-purple" routerLink="/category">Category List</button>
 <table mat-table [dataSource] = "dataSource" class = "mat-elevation-z8"> 
 
    <ng-container matColumnDef = "Id">
@@ -33,12 +34,13 @@
 
     <ng-container matColumnDef = "Category">
       <th mat-header-cell *matHeaderCellDef> Category </th>
-     <td mat-cell *matCellDef = "let element"> {{element.category}} </td>
+     <td mat-cell *matCellDef = "let element"> {{element.category_id}} </td>
    </ng-container> 
 
    <ng-container matColumnDef ="Operations" >
       <th mat-header-cell *matHeaderCellDef> Operations </th>
       <td mat-cell *matCellDef="let element" class="action-link">
+         
          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
                <button type="button" class="btn btn-outline-primary" routerLink="/edit/{{element.id}}">Edit</button>
@@ -46,7 +48,7 @@
             <div class="btn-group mr-2" role="group" aria-label="Second group">
                <button type="button" class="btn btn-outline-info" routerLink="/borrow/{{element.id}}">Borrow</button>
             </div>
-            <div class="btn-group" role="group" aria-label="Third group">
+            <div class="btn-group mr-2" role="group" aria-label="Third group">
                <button type="button" class="btn btn-outline-danger" (click)="onDelete(element.id)">Delete</button>
             </div>
          </div>

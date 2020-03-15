@@ -5,5 +5,6 @@ export interface Book{
     publisher : String,
     summary : String,
     release_date : String,
-    category : String
+    category_id : Number,
+    rental_status : Number
 }

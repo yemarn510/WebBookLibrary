@@ -11,6 +11,9 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { BorrowBookComponent } from './borrow-book/borrow-book.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     AddBookComponent,
     EditBookComponent,
     BorrowBookComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AddCategoryComponent,
+    CategoryListComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,

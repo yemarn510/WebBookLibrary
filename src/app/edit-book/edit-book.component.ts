@@ -13,7 +13,6 @@ import { DialogService } from '../common/dialog.service';
 })
 export class EditBookComponent implements OnInit {
 
-  value = 'Clear me';
   editBook : any;
   editBookForm = new FormGroup({
     title: new FormControl(''),
@@ -27,7 +26,6 @@ export class EditBookComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
     private dialogService : DialogService,
     )
     { }

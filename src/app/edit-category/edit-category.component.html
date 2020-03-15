@@ -1,0 +1,32 @@
+<h1 class="pageName">Edit This Category</h1>
+<form class="example-form">
+    <form [formGroup]="editCategoryForm" (ngSubmit)="updateCategory()">
+        <table align="center">
+            <tr>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Title</mat-label>
+                    <input matInput  value="{{editCategory?.id}}" formControlName="id" readonly='true'>
+                </mat-form-field>
+            </tr>
+            
+            <tr>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Author</mat-label>
+                    <input matInput value="{{editCategory?.category_name}}" formControlName="category_name">
+                </mat-form-field>
+            </tr>
+         
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="submit" class="btn btn-outline-primary" (click)="editConfirm()">Edit</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <a class="btn btn-outline-danger" href="/category" role="button">Cancel</a>
+                </div>
+            </div>
+        </table>
+    </form>
+</form>
+
+
+  

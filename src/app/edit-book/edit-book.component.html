@@ -1,3 +1,4 @@
+<h1 class="pageName">Edit this Book</h1>
 <form class="example-form">
     <form [formGroup]="editBookForm" (ngSubmit)="updateBook()">
         <table align="center">
@@ -39,7 +40,7 @@
             <tr>
                 <mat-form-field class="example-full-width">
                     <mat-label>Category</mat-label>
-                    <input matInput value="{{editBook?.category}}" formControlName="category">
+                    <input matInput value="{{editBook?.category_id}}" formControlName="category">
                 </mat-form-field>
             </tr>
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-outline-primary"routerLink="/add">Add Row</button>
+<button type="button" class="btn btn-outline-purple"routerLink="/add">Add Book</button>
 <table mat-table [dataSource] = "dataSource" class = "mat-elevation-z8"> 
 
    <ng-container matColumnDef = "Id">
@@ -36,7 +36,7 @@
      <td mat-cell *matCellDef = "let element"> {{element.category}} </td>
    </ng-container> 
 
-   <ng-container matColumnDef = "Operations">
+   <ng-container matColumnDef ="Operations" >
       <th mat-header-cell *matHeaderCellDef> Operations </th>
       <td mat-cell *matCellDef="let element" class="action-link">
          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -47,7 +47,7 @@
                <button type="button" class="btn btn-outline-info" routerLink="/borrow/{{element.id}}">Borrow</button>
             </div>
             <div class="btn-group" role="group" aria-label="Third group">
-               <button type="button" class="btn btn-outline-danger" routerLink="/delete/{{element.id}}">Delete</button>
+               <button type="button" class="btn btn-outline-danger" (click)="onDelete(element.id)">Delete</button>
             </div>
          </div>
 

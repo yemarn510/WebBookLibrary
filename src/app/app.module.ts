@@ -1,23 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooklistComponent } from './booklist/booklist.component';
-
 
 import { HttpClientModule }    from '@angular/common/http';
 import { MaterialModule } from './common/materialModule';
 import { AddBookComponent } from './add-book/add-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { BorrowBookComponent } from './borrow-book/borrow-book.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     BooklistComponent,
     AddBookComponent,
     EditBookComponent,
-    BorrowBookComponent
+    BorrowBookComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,8 @@ import { BorrowBookComponent } from './borrow-book/borrow-book.component';
     MaterialModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [ConfirmDialogComponent],
 })
 export class AppModule { }

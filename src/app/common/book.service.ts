@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookService {
+  
 
   private bookUrl = "http://127.0.0.1:8000/api/books";
   constructor(private http: HttpClient,) { }
@@ -20,5 +21,10 @@ export class BookService {
 
   editBook(id : Number, book : Book):Observable<Book>{
     return this.http.put<Book>(this.bookUrl + "/" + id + "/" , book);
+  }
+
+  deleteBook(id: Number) {
+    console.warn("delete book id : "+ id);
+    // return this.http.delete(this.bookUrl + "/" + id + "/");
   }
 }

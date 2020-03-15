@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../common/bookObj';
+import { BookService } from '../common/book.service';
+import { ActivatedRoute } from '@angular/router';
+import { DialogService } from '../common/dialog.service';
 
 @Component({
   selector: 'app-borrow-book',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BorrowBookComponent implements OnInit {
 
-  constructor() { }
+  borrowBook: Book;
+  constructor(private bookService: BookService,
+    private route: ActivatedRoute,
+    private dialogService : DialogService,
+    ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): Book {
+    return this.getBookToBorrow();
   }
 
+  getBookToBorrow():any{
+    const id = +this.route.snapshot.paramMap.get('id');
+    return this.bookService.getBookById(id).subscribe(borrowBook => this.borrowBook = borrowBook)
+  }
+
+  borrowThisBook(){
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.warn("book with id : "+ id + " can be borrowed");
+  }
+
+  borrowConfirm(){
+    this.dialogService.openConfirmDialog("Are U sure U want to Borrow this Book ?").afterClosed().subscribe
+    (res => {
+      if(res){
+        this.borrowThisBook();
+      }
+    });
+  }
 }

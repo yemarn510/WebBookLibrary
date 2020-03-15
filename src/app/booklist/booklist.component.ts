@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../common/book.service';
 import { Book } from '../common/bookObj';
+import { DialogService } from '../common/dialog.service';
 
 @Component({
   selector: 'app-booklist',
@@ -12,7 +13,8 @@ export class BooklistComponent implements OnInit {
   dataSource : Book[];
   displayedColumns: string[] = [ 'Id','Title', 'Author', 'Publisher', 'Summary','Released_date', 'Category', 'Operations'];
 
-  constructor(private bookService : BookService) { }
+  constructor(private bookService : BookService,
+    private dialogService : DialogService) { }
 
   ngOnInit(): void {
     this.getBookList();
@@ -21,4 +23,14 @@ export class BooklistComponent implements OnInit {
   getBookList(){
     this.bookService.getBooklist().subscribe(booklist => this.dataSource = booklist);
   }
+
+  onDelete(id : Number){
+    this.dialogService.openConfirmDialog("Are U sure to Delete this ?").afterClosed().subscribe
+    (res => {
+      if(res){
+        this.bookService.deleteBook(id);
+      }
+    });
+  }
+
 }

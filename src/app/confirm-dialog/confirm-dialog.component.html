@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{data.message}}</h1>
+<div mat-dialog-actions>
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button class="btn btn-outline-primary" [mat-dialog-close]="true">Yes</button>
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="Second group">
+        <a class="btn btn-outline-danger" [mat-dialog-close]="false">No</a>
+    </div>
+  </div>
+</div>

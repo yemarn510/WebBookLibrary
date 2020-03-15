@@ -4,6 +4,7 @@ import { Book } from '../common/bookObj';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { DialogService } from '../common/dialog.service';
 
 @Component({
   selector: 'app-edit-book',
@@ -26,9 +27,12 @@ export class EditBookComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    private fb: FormBuilder)
+    private fb: FormBuilder,
+    private dialogService : DialogService,
+    )
     { }
 
+  
   ngOnInit(){
     this.getBook();
   }
@@ -69,4 +73,14 @@ export class EditBookComponent implements OnInit {
     console.warn(this.editBookForm.value);
     // this.bookService.editBook(id, this.editBookForm.value);
   }
+
+  editConfirm(){
+    this.dialogService.openConfirmDialog("Are U sure to Edit this ?").afterClosed().subscribe
+    (res => {
+      if(res){
+        this.updateBook();
+      }
+    });
+  }
+
 }

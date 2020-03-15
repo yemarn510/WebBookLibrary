@@ -41,13 +41,9 @@
 
             <tr>
                 <th>
-                    <!-- <mat-form-field class="example-full-width">
-                        <mat-label>Release Date</mat-label>
-                        <input matInput type="text"  formControlName="release_date">
-                    </mat-form-field> -->
                     <mat-form-field class="example-full-width">
                         <mat-label>Release Date</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="release_date">
+                        <input type="text" matInput [matDatepicker]="picker" formControlName="release_date">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                       </mat-form-field>
@@ -58,14 +54,14 @@
                 <th>
                     <mat-form-field class="example-full-width">
                         <mat-label>Category</mat-label>
-                        <input matInput type="text"  formControlName="category">
+                        <input matInput type="text"  formControlName="category_id">
                     </mat-form-field>
                 </th>
             </tr>
 
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    <button type="submit" class="btn btn-outline-primary" href="/book">Submit</button>
                 </div>
                 <div class="btn-group mr-2" role="group" aria-label="Second group">
                     <a class="btn btn-outline-danger" href="/cancel" role="button">Cancel</a>

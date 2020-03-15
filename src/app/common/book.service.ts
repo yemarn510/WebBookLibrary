@@ -19,6 +19,9 @@ export class BookService {
     return this.http.get<Book>(this.bookUrl + "/" + id + "/");
   }
 
+  addBook(book : Book){
+    return this.http.post(this.bookUrl + "/" , book);
+  }
   editBook(id : Number, book : Book):Observable<Book>{
     return this.http.put<Book>(this.bookUrl + "/" + id + "/" , book);
   }

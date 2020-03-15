@@ -17,6 +17,7 @@ export class BooklistComponent implements OnInit {
     private dialogService : DialogService) { }
 
   ngOnInit(): void {
+    // document.body.classList.add('bg-img');
     this.getBookList();
   }
 

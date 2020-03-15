@@ -8,9 +8,11 @@ table{
     margin-left: 30px;
     width: 97%;
 }
-
+/* .bg-img{
+     background-image: url('https://s2.best-wallpaper.net/wallpaper/3840x2160/1812/One-book-opened-hazy_3840x2160.jpg'); 
+} */
 form.example-form{
-    margin-top: 80px;
+    margin-top: 50px;
     margin-left: 80px;
 }
 h1.pageName{
@@ -24,13 +26,13 @@ h1.pageName{
 
 .btn-outline-purple {
     margin-left: 30px;
-    color: #9500ff;
-    border-color: #9500ff;
+    color: #d362f9;
+    border-color: #d362f9;
 }
 
 .btn-outline-purple:hover{
     color: #ffffff;
-    background-color: #9500ff;
+    background-color: #d362f9;
 }
 
 .btn-outline-green {

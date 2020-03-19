@@ -4,7 +4,7 @@ export interface Book{
     author : String,
     publisher : String,
     summary : String,
-    release_date : String,
+    release_date : Date,
     category_id : Number,
     rental_status : Number
 }

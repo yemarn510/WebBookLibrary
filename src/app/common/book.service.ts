@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Book } from './bookObj'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,9 @@ export class BookService {
   
 
   private bookUrl = "http://127.0.0.1:8000/api/books";
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   constructor(private http: HttpClient,) { }
 
   getBooklist(): Observable<Book[]>{
@@ -20,6 +23,7 @@ export class BookService {
   }
 
   addBook(book : Book){
+    console.warn(" The book inside service : "+ book.title);
     return this.http.post(this.bookUrl + "/" , book);
   }
   editBook(id : Number, book : Book):Observable<Book>{
@@ -27,7 +31,6 @@ export class BookService {
   }
 
   deleteBook(id: Number) {
-    console.warn("delete book id : "+ id);
-    // return this.http.delete(this.bookUrl + "/" + id + "/");
+    return this.http.delete<Book>(this.bookUrl + "/" + id + "/");
   }
 }

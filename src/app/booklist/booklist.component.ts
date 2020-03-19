@@ -29,7 +29,7 @@ export class BooklistComponent implements OnInit {
     this.dialogService.openConfirmDialog("Are U sure to Delete this ?").afterClosed().subscribe
     (res => {
       if(res){
-        this.bookService.deleteBook(id);
+        this.bookService.deleteBook(id).subscribe();
       }
     });
   }

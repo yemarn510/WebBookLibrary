@@ -10,7 +10,7 @@ import { Book } from '../common/bookObj';
 })
 export class AddBookComponent implements OnInit {
 
-  addNewBook : Book;
+  afterReturn : any;
   addBookForm = new FormGroup({
     title: new FormControl(''),
     author: new FormControl(''),
@@ -26,7 +26,6 @@ export class AddBookComponent implements OnInit {
   }
 
   addBook(){
-    console.warn(this.addBookForm.value);
     if(null != this.addBookForm.value.release_date)
     {
       var event = new Date(this.addBookForm.value.release_date);
@@ -34,15 +33,8 @@ export class AddBookComponent implements OnInit {
       let date = JSON.stringify(event)
       date = date.slice(1,11)
       this.addBookForm.value.release_date = date
-      console.warn(this.addBookForm.value.release_date)
     }
-
-    this.addNewBook.title = this.addBookForm.value.title;
-    this.addNewBook.author = this.addBookForm.value.author;
-    this.addNewBook.publisher = this.addBookForm.value.publisher;
-    this.addNewBook.release_date = this.addBookForm.value.release_date;
-    this.addNewBook.summary = this.addBookForm.value.summary;
-    this.bookService.addBook(this.addNewBook);
+    this.bookService.addBook(this.addBookForm.value).subscribe(data => this.afterReturn =data);
   }
 
 }

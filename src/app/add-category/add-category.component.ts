@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Category } from '../common/categoryObj';
+import { CategoryService } from '../common/category.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-category',
@@ -12,13 +15,17 @@ export class AddCategoryComponent implements OnInit {
     category_name: new FormControl(''),
   });
 
-  constructor() { }
+  constructor(private categoryService : CategoryService,
+    private location: Location,
+    ) { }
 
   ngOnInit(): void {
   
   }
   
   addCategory(){
-    console.warn(this.addCategoryForm.value)
+    console.warn(this.addCategoryForm.value);
+    this.categoryService.addCategory(this.addCategoryForm.value).subscribe();
+    this.location.back();
   }
 }

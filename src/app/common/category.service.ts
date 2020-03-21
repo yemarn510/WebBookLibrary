@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CategoryService {
+  
 
   private categoryApiUrl = "http://127.0.0.1:8000/api/category";
   constructor(private http: HttpClient,
@@ -18,5 +19,19 @@ export class CategoryService {
 
   getCategoryById(id :Number): Observable<Category>{
     return this.http.get<Category>(this.categoryApiUrl+ "/" + id + "/");
+  }
+
+  addCategory(category_name : String): Observable<Category>{
+    return this.http.post<Category>(this.categoryApiUrl + "/",  category_name);
+  }
+
+  editCategory(id : Number , category : Category): Observable<Category>{
+    console.warn(" id : "+ id);
+    console.warn(" category_name : " + category.category_name);
+    return this.http.put<Category>(this.categoryApiUrl + "/" + id + "/",  category);
+  }
+
+  deleteCategory(id: number): Observable<Category>{
+    return this.http.delete<Category>(this.categoryApiUrl + "/" + id + "/");
   }
 }

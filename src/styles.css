@@ -7,6 +7,9 @@ table{
     margin-top: 10px;
     width: 97%;
 }
+table.mat-elevation-z8{
+    margin-left: 30px;
+}
 /* .bg-img{
      background-image: url('https://s2.best-wallpaper.net/wallpaper/3840x2160/1812/One-book-opened-hazy_3840x2160.jpg'); 
 } */

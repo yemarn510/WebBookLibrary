@@ -23,7 +23,6 @@ export class BookService {
   }
 
   addBook(book : Book){
-    console.warn(" The book inside service : "+ book.title);
     return this.http.post(this.bookUrl + "/" , book);
   }
   editBook(id : Number, book : Book):Observable<Book>{
@@ -33,4 +32,10 @@ export class BookService {
   deleteBook(id: Number) {
     return this.http.delete<Book>(this.bookUrl + "/" + id + "/");
   }
+
+  borrowBook(id : Number, book : Book):Observable<Book>{
+    console.warn( " the id : "+ id );
+    return this.http.put<Book>(this.bookUrl + "/" + id + "/" , book);
+  }
+
 }

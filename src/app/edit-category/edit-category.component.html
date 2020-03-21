@@ -1,13 +1,7 @@
 <h1 class="pageName">Edit This Category</h1>
 <form class="example-form">
-    <form [formGroup]="editCategoryForm" (ngSubmit)="updateCategory()">
+    <form [formGroup]="editCategoryForm">
         <table align="center">
-            <tr>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Title</mat-label>
-                    <input matInput  value="{{editCategory?.id}}" formControlName="id" readonly='true'>
-                </mat-form-field>
-            </tr>
             
             <tr>
                 <mat-form-field class="example-full-width">

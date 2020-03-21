@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BookService } from '../common/book.service';
-import { Book } from '../common/bookObj';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { DialogService } from '../common/dialog.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-book',
@@ -27,15 +26,16 @@ export class EditBookComponent implements OnInit {
     private bookService: BookService,
     private route: ActivatedRoute,
     private dialogService : DialogService,
+    private location: Location,
     )
     { }
 
   
   ngOnInit(){
-    this.getBook();
+    this.getABook();
   }
 
-  getBook(): any{
+  getABook(): any{
     const id = +this.route.snapshot.paramMap.get('id');
     this.bookService.getBookById(id).subscribe(oneBook => this.editBook = oneBook);
   }
@@ -43,7 +43,6 @@ export class EditBookComponent implements OnInit {
 
   updateBook(){
     const id = +this.route.snapshot.paramMap.get('id');
-    console.warn("id"+ id)
     if(this.editBookForm.value.title== "")
     {
       this.editBookForm.value.title = this.editBook.title;
@@ -69,7 +68,7 @@ export class EditBookComponent implements OnInit {
       this.editBookForm.value.category = this.editBook.category;
     }
     console.warn(this.editBookForm.value);
-    // this.bookService.editBook(id, this.editBookForm.value);
+    this.bookService.editBook(id, this.editBookForm.value).subscribe();
   }
 
   editConfirm(){
@@ -77,6 +76,7 @@ export class EditBookComponent implements OnInit {
     (res => {
       if(res){
         this.updateBook();
+        this.location.back();
       }
     });
   }

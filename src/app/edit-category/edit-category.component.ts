@@ -5,6 +5,7 @@ import { Category } from '../common/categoryObj';
 import { CategoryService } from '../common/category.service';
 import { DialogService } from '../common/dialog.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-category',
@@ -21,7 +22,9 @@ export class EditCategoryComponent implements OnInit {
 
   constructor(private categoryService : CategoryService,
     private dialogService : DialogService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private location: Location,
+    ) { }
   
   ngOnInit(): void {
     this.getCategory();
@@ -33,6 +36,8 @@ export class EditCategoryComponent implements OnInit {
   }
 
   updateCategory(){
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.categoryService.editCategory(id , this.editCategoryForm.value).subscribe();
   }
 
   editConfirm(){

@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoryListComponent implements OnInit {
 
   dataSource : Category[];
+  deleteId : Number;
   displayedColumns: string[] = [ 'Id','Title', 'Operations'];
   
   constructor(
@@ -28,16 +29,15 @@ export class CategoryListComponent implements OnInit {
     this.categoryService.getCategoryList().subscribe(list => this.dataSource = list);
   }
 
-  deleteACategory(){
-    const id = +this.route.snapshot.paramMap.get('id');
+  deleteACategory(id : Number){
     this.categoryService.deleteCategory(id).subscribe();
   }
 
   onDelete(id : Number){
     this.dialogService.openConfirmDialog("Are U sure to Delete this ?").afterClosed().subscribe
-    (res => {
+    (res => { this.deleteId =id ;
       if(res){
-        this.deleteACategory();
+        this.deleteACategory(this.deleteId);
         location.reload();
       }
     });

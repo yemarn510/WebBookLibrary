@@ -31,7 +31,8 @@ export class CategoryService {
     return this.http.put<Category>(this.categoryApiUrl + "/" + id + "/",  category);
   }
 
-  deleteCategory(id: number): Observable<Category>{
-    return this.http.delete<Category>(this.categoryApiUrl + "/" + id + "/");
+  deleteCategory(id: Number){
+    console.warn("the category with id : " + id + " has been deleted");
+    return this.http.delete(this.categoryApiUrl + "/" + id + "/");
   }
 }

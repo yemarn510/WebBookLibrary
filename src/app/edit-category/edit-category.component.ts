@@ -45,6 +45,7 @@ export class EditCategoryComponent implements OnInit {
     (res => {
       if(res){
         this.updateCategory();
+        this.location.back();
       }
     });
   }

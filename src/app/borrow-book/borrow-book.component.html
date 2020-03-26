@@ -39,8 +39,12 @@
             <tr>
                 <mat-form-field class="example-full-width">
                     <mat-label>Category</mat-label>
-                    <input matInput value="{{borrowBook?.category_id}}" readonly="true">
+                    <input matInput value="{{category[borrowBook.category_id].category_name}}" readonly="true">
                 </mat-form-field>
+            </tr>
+
+            <tr>
+                {{category.category_name}}
             </tr>
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
@@ -51,7 +55,11 @@
                 </div>
             </div>
         </table>
+        
 </form>
 
+<table>
+    
+</table>
 
   

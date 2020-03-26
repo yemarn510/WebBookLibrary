@@ -40,8 +40,12 @@
             <tr>
                 <mat-form-field class="example-full-width">
                     <mat-label>Category</mat-label>
-                    <input matInput value="{{editBook?.category_id}}" formControlName="category">
-                </mat-form-field>
+                    <mat-select formControlName="category">
+                      <mat-option *ngFor="let category of categoryList" [value]="category">
+                          {{category.category_name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
             </tr>
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">

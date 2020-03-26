@@ -54,8 +54,12 @@
                 <th>
                     <mat-form-field class="example-full-width">
                         <mat-label>Category</mat-label>
-                        <input matInput type="text"  formControlName="category_id">
-                    </mat-form-field>
+                        <mat-select formControlName="category_id">
+                          <mat-option *ngFor="let category of categoryList" [value]="category">
+                              {{category.category_name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                 </th>
             </tr>
 

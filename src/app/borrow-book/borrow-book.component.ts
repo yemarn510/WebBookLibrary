@@ -4,6 +4,8 @@ import { BookService } from '../common/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { DialogService } from '../common/dialog.service';
 import { Location } from '@angular/common';
+import { CategoryService } from '../common/category.service';
+import { Category } from '../common/categoryObj';
 
 @Component({
   selector: 'app-borrow-book',
@@ -12,8 +14,11 @@ import { Location } from '@angular/common';
 })
 export class BorrowBookComponent implements OnInit {
 
-  borrowBook: Book;
-  constructor(private bookService: BookService,
+  category : any;
+  borrowBook: any;
+  constructor(
+    private bookService: BookService,
+    private categoryService : CategoryService,
     private route: ActivatedRoute,
     private dialogService : DialogService,
     private location: Location,
@@ -25,7 +30,9 @@ export class BorrowBookComponent implements OnInit {
 
   getBookToBorrow():any{
     const id = +this.route.snapshot.paramMap.get('id');
-    return this.bookService.getBookById(id).subscribe(borrowBook => this.borrowBook = borrowBook)
+    this.bookService.getBookById(id).subscribe(borrowBook => this.borrowBook = borrowBook);
+    this.categoryService.getCategoryList().subscribe(data => this.category = data);
+    console.warn(this.category.category_name)
   }
   borrowThisBook(){
     const id = +this.route.snapshot.paramMap.get('id');

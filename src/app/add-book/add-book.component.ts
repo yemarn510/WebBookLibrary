@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BookService } from '../common/book.service';
 import { Location } from '@angular/common';
+import { CategoryService } from '../common/category.service';
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
@@ -9,6 +10,7 @@ import { Location } from '@angular/common';
 })
 export class AddBookComponent implements OnInit {
 
+  categoryList : any;
   afterReturn : any;
   addBookForm = new FormGroup({
     title: new FormControl(''),
@@ -21,13 +23,16 @@ export class AddBookComponent implements OnInit {
   
   constructor(
     private bookService: BookService,
+    private categoryService : CategoryService,
     private location: Location,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): any {
+    this.categoryService.getCategoryList().subscribe(data => this.categoryList =data);
   }
 
   addBook(){
+    this.addBookForm.value.category_id = this.addBookForm.value.category_id.id;
     if(null != this.addBookForm.value.release_date)
     {
       var event = new Date(this.addBookForm.value.release_date);

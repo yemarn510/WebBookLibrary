@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { DialogService } from '../common/dialog.service';
 import { Location } from '@angular/common';
+import { CategoryService } from '../common/category.service';
 
 @Component({
   selector: 'app-edit-book',
@@ -12,7 +13,9 @@ import { Location } from '@angular/common';
 })
 export class EditBookComponent implements OnInit {
 
+  
   editBook : any;
+  categoryList : any;
   editBookForm = new FormGroup({
     title: new FormControl(''),
     author: new FormControl(''),
@@ -24,6 +27,7 @@ export class EditBookComponent implements OnInit {
   
   constructor(
     private bookService: BookService,
+    private categoryService : CategoryService,
     private route: ActivatedRoute,
     private dialogService : DialogService,
     private location: Location,
@@ -38,6 +42,7 @@ export class EditBookComponent implements OnInit {
   getABook(): any{
     const id = +this.route.snapshot.paramMap.get('id');
     this.bookService.getBookById(id).subscribe(oneBook => this.editBook = oneBook);
+    this.categoryService.getCategoryList().subscribe(data => this.categoryList = data);
   }
 
 
@@ -67,6 +72,7 @@ export class EditBookComponent implements OnInit {
     {
       this.editBookForm.value.category = this.editBook.category;
     }
+    this.editBook.category = this.editBook.category.id;
     console.warn(this.editBookForm.value);
     this.bookService.editBook(id, this.editBookForm.value).subscribe();
   }

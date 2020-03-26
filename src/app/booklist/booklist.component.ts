@@ -3,6 +3,8 @@ import { BookService } from '../common/book.service';
 import { Book } from '../common/bookObj';
 import { DialogService } from '../common/dialog.service';
 import { Location } from '@angular/common';
+import { CategoryService } from '../common/category.service';
+import { Category } from '../common/categoryObj';
  
 @Component({
   selector: 'app-booklist',
@@ -12,20 +14,24 @@ import { Location } from '@angular/common';
 export class BooklistComponent implements OnInit {
 
   dataSource : Book[];
-  displayedColumns: string[] = [ 'Id','Title', 'Author', 'Publisher', 'Summary','Released_date', 'Category', 'Operations'];
+  category_name : String;
+  categoryList : Category[];
+  someArray = [1, "string", false];
+  displayedColumns: any[] = [ 'Id','Title', 'Author', 'Publisher', 'Summary','Released_date', 'Category', 'Operations'];
 
   constructor(
     private bookService : BookService,
     private dialogService : DialogService,
+    private categoryService : CategoryService,
     ) { }
 
   ngOnInit(): void {
-    // document.body.classList.add('bg-img');
     this.getBookList();
   }
 
   getBookList(){
-    this.bookService.getBooklist().subscribe(booklist => this.dataSource = booklist);
+    this.categoryService.getCategoryList().subscribe(data => this.categoryList = data);
+    this.bookService.getBooklist().subscribe(booklist => this.dataSource= booklist);
   }
 
   onDelete(id : Number){

@@ -39,8 +39,8 @@
             
             <tr>
                 <mat-form-field class="example-full-width">
-                    <mat-label>Category</mat-label>
-                    <mat-select formControlName="category">
+                    <mat-label>{{categoryList[editBook?.category_id -1 ].category_name}}</mat-label>
+                    <mat-select formControlName="category_id">
                       <mat-option *ngFor="let category of categoryList" [value]="category">
                           {{category.category_name}}
                       </mat-option>

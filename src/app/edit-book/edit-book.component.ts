@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../common/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
@@ -13,7 +13,7 @@ import { CategoryService } from '../common/category.service';
 })
 export class EditBookComponent implements OnInit {
 
-  
+  selected ;
   editBook : any;
   categoryList : any;
   editBookForm = new FormGroup({
@@ -21,13 +21,13 @@ export class EditBookComponent implements OnInit {
     author: new FormControl(''),
     publisher : new FormControl(''),
     summary: new FormControl(''),
-    release_date: new FormControl(''),
-    category: new FormControl(''),
+    release_date: new FormControl(''), 
+    category_id: new FormControl(''),
   });
   
   constructor(
-    private bookService: BookService,
-    private categoryService : CategoryService,
+    public bookService: BookService,
+    public categoryService : CategoryService,
     private route: ActivatedRoute,
     private dialogService : DialogService,
     private location: Location,
@@ -37,6 +37,7 @@ export class EditBookComponent implements OnInit {
   
   ngOnInit(){
     this.getABook();
+    
   }
 
   getABook(): any{
@@ -48,31 +49,28 @@ export class EditBookComponent implements OnInit {
 
   updateBook(){
     const id = +this.route.snapshot.paramMap.get('id');
-    if(this.editBookForm.value.title== "")
-    {
+    if(this.editBookForm.value.title== ""){
       this.editBookForm.value.title = this.editBook.title;
     }
-    if(this.editBookForm.value.author== "")
-    {
+    if(this.editBookForm.value.author== ""){
       this.editBookForm.value.author = this.editBook.author;
     }
-    if(this.editBookForm.value.publisher== "")
-    {
+    if(this.editBookForm.value.publisher== ""){
       this.editBookForm.value.publisher = this.editBook.publisher;
     }
-    if(this.editBookForm.value.summary== "")
-    {
+    if(this.editBookForm.value.summary== ""){
       this.editBookForm.value.summary = this.editBook.summary;
     }
-    if(this.editBookForm.value.release_date== "")
-    {
+    if(this.editBookForm.value.release_date== ""){
       this.editBookForm.value.release_date = this.editBook.release_date;
     }
-    if(this.editBookForm.value.category== "")
-    {
-      this.editBookForm.value.category = this.editBook.category;
+    if(this.editBookForm.value.category_id.id == ""){
+      this.editBookForm.value.category_id = this.editBook.category;
     }
-    this.editBook.category = this.editBook.category.id;
+    else{
+      this.editBookForm.value.category_id = this.editBookForm.value.category_id.id;
+    }
+    this.editBookForm.value.rental_status = 0;
     console.warn(this.editBookForm.value);
     this.bookService.editBook(id, this.editBookForm.value).subscribe();
   }

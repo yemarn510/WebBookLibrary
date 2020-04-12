@@ -13,13 +13,14 @@ table.mat-elevation-z8{
 /* .bg-img{
      background-image: url('https://s2.best-wallpaper.net/wallpaper/3840x2160/1812/One-book-opened-hazy_3840x2160.jpg'); 
 } */
-form.example-form{
+form.example-form{  
     margin-top: 50px;
-    margin-left: 110px;
+    margin-left: 90px;
 }
 h1.pageName{
+    padding-top: 20px;
     margin-top: 80px;
-    margin-left: 60px;
+    margin-left: 40px;
 }
 
 .summary{
@@ -27,7 +28,8 @@ h1.pageName{
 }
 
 .btn-outline-purple {
-    margin-left: 30px;
+    margin-top: 10px;
+    margin-left: 20px;
     color: #d362f9;
     border-color: #d362f9;
 }
@@ -38,6 +40,7 @@ h1.pageName{
 }
 
 .btn-outline-green {
+    margin-top: 10px;
     margin-left: 30px;
     color: #019b4c;
     border-color: #019b4c;
@@ -46,4 +49,11 @@ h1.pageName{
 .btn-outline-green:hover{
     color: #ffffff;
     background-color: #019b4c;
+}
+
+mat-grid-list {
+    width: 40%;
+    border-top: 20px;
+    margin-left: 50px;
+    box-shadow: 0 0 20px 20px rgb(230, 230, 230);
 }

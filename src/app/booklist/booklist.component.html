@@ -1,5 +1,12 @@
 <button type="button" class="btn btn-outline-green" routerLink="/add">Add Book</button>
 <button type="button" class="btn btn-outline-purple" routerLink="/category">Category List</button>
+<br>
+<br>
+<mat-form-field style="margin-left: 32px; width: 16%;">
+   <mat-label>Search</mat-label>
+   <input matInput (keyup)="applyFilter($event)">
+</mat-form-field>
+
 <table mat-table [dataSource] = "dataSource" class = "mat-elevation-z8"> 
 
    <ng-container matColumnDef = "Id">

@@ -1,76 +1,77 @@
+<mat-grid-list cols="1" rowHeight="530px">
+    <h1 class="pageName">Add a New Book</h1>
+    <form class="example-form">
+        <form [formGroup]="addBookForm" (ngSubmit)="addBook()">
+            <table align="center">
+                <tr>
+                    <th>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Title</mat-label>
+                            <input matInput type="text"  formControlName="title">
+                        </mat-form-field>
+                    </th>
+                </tr>
 
-<h1 class="pageName">Add a New Book</h1>
-<form class="example-form">
-    <form [formGroup]="addBookForm" (ngSubmit)="addBook()">
-        <table align="center">
-            <tr>
-                <th>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Title</mat-label>
-                        <input matInput type="text"  formControlName="title">
-                    </mat-form-field>
-                </th>
-            </tr>
+                <tr>
+                    <th>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Author</mat-label>
+                            <input matInput type="text"  formControlName="author">
+                        </mat-form-field>
+                    </th>
+                </tr>
+                
+                <tr>
+                    <th>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Publisher</mat-label>
+                            <input matInput type="text"  formControlName="publisher">
+                        </mat-form-field>
+                    </th>
+                </tr>
 
-            <tr>
-                <th>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Author</mat-label>
-                        <input matInput type="text"  formControlName="author">
-                    </mat-form-field>
-                </th>
-            </tr>
-           
-            <tr>
-                <th>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Publisher</mat-label>
-                        <input matInput type="text"  formControlName="publisher">
-                    </mat-form-field>
-                </th>
-            </tr>
+                <tr>
+                    <th>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Summary</mat-label>
+                            <input matInput type="text"  formControlName="summary">
+                        </mat-form-field>
+                    </th>
+                </tr>
 
-            <tr>
-                <th>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Summary</mat-label>
-                        <input matInput type="text"  formControlName="summary">
-                    </mat-form-field>
-                </th>
-            </tr>
+                <tr>
+                    <th>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Release Date</mat-label>
+                            <input type="text" matInput [matDatepicker]="picker" formControlName="release_date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                    </th>
+                </tr>
 
-            <tr>
-                <th>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Release Date</mat-label>
-                        <input type="text" matInput [matDatepicker]="picker" formControlName="release_date">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                </th>
-            </tr>
+                <tr>
+                    <th>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Category</mat-label>
+                            <mat-select formControlName="category_id">
+                                <mat-option *ngFor="let category of categoryList" [value]="category">
+                                    {{category.category_name}}
+                                </mat-option>
+                            </mat-select>
+                            </mat-form-field>
+                    </th>
+                </tr>
 
-            <tr>
-                <th>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Category</mat-label>
-                        <mat-select formControlName="category_id">
-                          <mat-option *ngFor="let category of categoryList" [value]="category">
-                              {{category.category_name}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                </th>
-            </tr>
-
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button type="submit" class="btn btn-outline-primary" href="/book">Submit</button>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button type="submit" class="btn btn-outline-primary" href="/book">Submit</button>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                        <a class="btn btn-outline-danger" href="/cancel" role="button">Cancel</a>
+                    </div>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                    <a class="btn btn-outline-danger" href="/cancel" role="button">Cancel</a>
-                </div>
-            </div>
-        </table>
+            </table>
+        </form>
     </form>
-</form>
+</mat-grid-list>

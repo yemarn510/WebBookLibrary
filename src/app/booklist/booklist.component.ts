@@ -13,7 +13,7 @@ import { Category } from '../common/categoryObj';
 })
 export class BooklistComponent implements OnInit {
 
-  dataSource : Book[];
+  dataSource : any;
   category_name : String;
   categoryList : Category[];
   someArray = [1, "string", false];
@@ -42,6 +42,11 @@ export class BooklistComponent implements OnInit {
         location.reload();
       }
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

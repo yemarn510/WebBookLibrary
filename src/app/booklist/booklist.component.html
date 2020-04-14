@@ -1,51 +1,64 @@
-<button type="button" class="btn btn-outline-green" routerLink="/add">Add Book</button>
-<button type="button" class="btn btn-outline-purple" routerLink="/category">Category List</button>
-<br>
-<br>
-<mat-form-field>
-   <mat-label >Search</mat-label>
-   <input matInput (keyup)="applyFilter($event)">
-</mat-form-field>
+<div class="routs">
+   <button type="button" class="btn btn-outline-green" routerLink="/add">Add Book</button>
+   <button type="button" class="btn btn-outline-purple" routerLink="/category">Category List</button>
+   <mat-form-field>
+      <mat-label style="font-size: 16px;">Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)">
+   </mat-form-field>
+</div>
+
 
 <div class="mat-elevation-z8">
    <table mat-table [dataSource] = "dataSource" matSort>  
       <ng-container matColumnDef = "Id" >
-         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
-         <td mat-cell *matCellDef = "let element" style="width: 3%;"> {{element.id}} </td>
+         <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 3%;"> ID</th>
+         <td mat-cell *matCellDef = "let element"> {{element.id}} </td>
       </ng-container>
    
        <ng-container matColumnDef = "Title" >
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
-          <td mat-cell *matCellDef = "let element" style="width: 15%;"> {{element.title | slice :0: 20}}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 12%;"> Title</th>
+          <td mat-cell *matCellDef = "let element"> {{element.title | slice :0: 20}}</td>
        </ng-container>
    
        <ng-container matColumnDef = "Author">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Author </th>
-          <td mat-cell *matCellDef = "let element" style="width: 10%;"> {{element.author}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"> Author </th>
+          <td mat-cell *matCellDef = "let element"> {{element.author}} </td>
        </ng-container>
    
        <ng-container matColumnDef = "Publisher">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Publisher </th>
-          <td mat-cell *matCellDef = "let element" style="width: 10%;"> {{element.publisher | slice :0: 20}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"> Publisher </th>
+          <td mat-cell *matCellDef = "let element"> {{element.publisher | slice :0: 20}} </td>
        </ng-container>
    
        <ng-container matColumnDef = "Summary">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Summary </th>
-          <td mat-cell *matCellDef = "let element" class="summary" style="width: 20%;"> {{element.summary | slice :0: 40}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"> Summary </th>
+          <td mat-cell *matCellDef = "let element" class="summary"> {{element.summary | slice :0: 15}} </td>
        </ng-container>
    
        <ng-container matColumnDef = "Released_date">
-          <th mat-header-cell *matHeaderCellDef> Released Date</th>
-         <td mat-cell *matCellDef = "let element" style="width: 10%;"> {{element.release_date}} </td>
-       </ng-container> 
+          <th mat-header-cell *matHeaderCellDef style="width: 10%;"> Released Date</th>
+         <td mat-cell *matCellDef = "let element"> {{element.release_date}} </td>
+       </ng-container>
    
        <ng-container matColumnDef = "Category">
-         <th mat-header-cell *matHeaderCellDef> Category </th>
-         <td mat-cell *matCellDef = "let element" style="width: 10%;">
+         <th mat-header-cell *matHeaderCellDef style="width: 10%;"> Category </th>
+         <td mat-cell *matCellDef = "let element">
             {{categoryList[element.category_id - 1].category_name}}
          </td>
       </ng-container> 
    
+      <ng-container matColumnDef = "Rental Status">
+         <th mat-header-cell *matHeaderCellDef style="width: 10%;"> Rental Status </th>
+         <td mat-cell *matCellDef = "let element" > 
+            <div *ngIf="element.rental_status === 0">
+               <a style="color:rgb(29, 89, 202);">Available</a>
+            </div>
+            <div *ngIf="element.rental_status === 1">
+               <a style="color: rgb(129, 129, 129);">Rented</a>
+            </div>
+         </td>
+      </ng-container> 
+
       <ng-container matColumnDef ="Operations" >
          <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Operations </th>
          <td mat-cell *matCellDef="let element" class="action-link">
@@ -53,8 +66,15 @@
                <div class="btn-group mr-2" role="group" aria-label="First group">
                   <button type="button" class="btn btn-outline-primary" routerLink="/edit/{{element.id}}">Edit</button>
                </div>
-               <div class="btn-group mr-2" role="group" aria-label="Second group">
-                  <button type="button" class="btn btn-outline-info" routerLink="/borrow/{{element.id}}">Borrow</button>
+               <div class="btn-group mr-2 btn-borrow" role="group" aria-label="Second group" >
+                  <button type="button" class="btn btn-outline-info btn-borrow" routerLink="/borrow/{{element.id}}">
+                     <div *ngIf="element.rental_status === 0">
+                        <a>Borrow</a>
+                     </div>
+                     <div *ngIf="element.rental_status === 1">
+                        <a>Return</a>
+                     </div>
+                  </button>
                </div>
                <div class="btn-group mr-2" role="group" aria-label="Third group">
                   <button type="button" class="btn btn-outline-danger" (click)="onDelete(element.id)">Delete</button>

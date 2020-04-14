@@ -14,3 +14,9 @@ mat-label{
 mat-form-field{
     margin-left: 32px; width: 16%;
 }
+div.searchBox{
+    padding-top: 10px;
+}
+button.btn-borrow{
+    width: 80px;
+}

@@ -15,7 +15,7 @@ import { MatSort } from '@angular/material/sort';
 export class BooklistComponent implements OnInit {
 
   categoryList : Category[];
-  displayedColumns: string[] = [ 'Id','Title', 'Author', 'Publisher', 'Summary','Released_date', 'Category', 'Operations'];
+  displayedColumns: string[] = [ 'Id','Title', 'Author', 'Publisher', 'Summary', 'Released_date', 'Category', 'Rental Status', 'Operations'];
   dataSource: MatTableDataSource<Book>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;

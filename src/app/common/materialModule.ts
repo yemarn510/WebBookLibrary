@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -12,13 +13,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   exports: [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-
+    BrowserModule,
     MatTableModule,
     MatDialogModule, 
     MatFormFieldModule,
@@ -29,6 +31,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatNativeDateModule,
     MatSelectModule,
     MatGridListModule,
+    MatSortModule,
   ]
 })
 export class MaterialModule {}

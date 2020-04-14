@@ -1,6 +1,7 @@
-<h1 class="pageName">Borrow This Book ?</h1>
-<form class="example-form">    
-    <table align="center">
+<mat-grid-list cols="1" rowHeight="530px">
+    <h1 class="pageName">Borrow This Book ?</h1>
+    <form class="example-form">    
+        <table align="center">
             <tr>
                 <mat-form-field class="example-full-width">
                     <mat-label>Title</mat-label>
@@ -39,7 +40,7 @@
             <tr>
                 <mat-form-field class="example-full-width">
                     <mat-label>Category</mat-label>
-                    <input matInput value="{{category[borrowBook.category_id].category_name}}" readonly="true">
+                    <input matInput value="{{category[borrowBook.category_id - 1].category_name}}" readonly="true">
                 </mat-form-field>
             </tr>
 
@@ -55,11 +56,7 @@
                 </div>
             </div>
         </table>
-        
-</form>
-
-<table>
-    
-</table>
+    </form>
+</mat-grid-list>
 
   

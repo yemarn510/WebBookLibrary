@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BookService } from '../common/book.service';
 import { Book } from '../common/bookObj';
 import { DialogService } from '../common/dialog.service';
-import { Location } from '@angular/common';
 import { CategoryService } from '../common/category.service';
 import { Category } from '../common/categoryObj';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
  
 @Component({
   selector: 'app-booklist',
@@ -13,27 +14,31 @@ import { Category } from '../common/categoryObj';
 })
 export class BooklistComponent implements OnInit {
 
-  dataSource : any;
-  category_name : String;
   categoryList : Category[];
-  someArray = [1, "string", false];
-  displayedColumns: any[] = [ 'Id','Title', 'Author', 'Publisher', 'Summary','Released_date', 'Category', 'Operations'];
+  displayedColumns: string[] = [ 'Id','Title', 'Author', 'Publisher', 'Summary','Released_date', 'Category', 'Operations'];
+  dataSource: MatTableDataSource<Book>;
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  
   constructor(
     private bookService : BookService,
     private dialogService : DialogService,
     private categoryService : CategoryService,
-    ) { }
+    ) {
+    }
 
   ngOnInit(): void {
     this.getBookList();
+    this.dataSource.sort = this.sort;
   }
 
   getBookList(){
     this.categoryService.getCategoryList().subscribe(data => this.categoryList = data);
-    this.bookService.getBooklist().subscribe(booklist => this.dataSource= booklist);
+    this.bookService.getBooklist().subscribe(booklist => {
+      this.dataSource = new MatTableDataSource(booklist);
+    }
+    );
   }
-
   onDelete(id : Number){
     this.dialogService.openConfirmDialog("Are U sure to Delete this ?").afterClosed().subscribe
     (res => {

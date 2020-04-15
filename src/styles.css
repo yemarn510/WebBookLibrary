@@ -14,17 +14,14 @@ div.mat-elevation-z8{
      background-image: url('https://s2.best-wallpaper.net/wallpaper/3840x2160/1812/One-book-opened-hazy_3840x2160.jpg'); 
 } */
 form.example-form{
-    margin-top: 40px;
-    margin-left: 80px;
+    margin-top: 10%;
+    margin-left: 10%;
 }
 h1.pageName{
-    padding-top: 20px;
-    margin-top: 60px;
+    font-size: 30px;
+    padding-top: 40px;
+    /* margin-top: 60px; */ 
     margin-left: 40px;
-}
-
-.summary{
-    width: 300px;
 }
 
 .btn-outline-purple {
@@ -59,4 +56,13 @@ mat-grid-list {
 
 div.routs{
     margin-top: 1%;
+}
+
+/* div.btn-toolbar{
+    padding-top: 7%;
+} */
+
+.formPosition{
+    margin-top: 5%;
+    margin-left: 5%;
 }

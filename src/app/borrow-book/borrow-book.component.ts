@@ -48,12 +48,19 @@ export class BorrowBookComponent implements OnInit {
     this.bookService.borrowBook(id , this.borrowBook).subscribe();
   }
   borrowConfirm(){
-    this.dialogService.openConfirmDialog("Are U sure U want to Borrow this Book ?").afterClosed().subscribe
-    (res => {
+    if(this.borrowBook.rental_status == 0){
+      this.dialogService.openConfirmDialog("Are U sure U want to Borrow this Book ?").afterClosed().subscribe
+      (res => {
       if(res){
         this.borrowThisBook();
         this.location.back();
       }
     });
+    }
+    else{
+      this.borrowThisBook();
+      this.location.back();
+    }
+    
   }
 }

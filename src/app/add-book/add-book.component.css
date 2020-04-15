@@ -1,3 +1,7 @@
 .example-full-width{
     width: 400px;
 }
+
+div.btn-toolbar{
+    padding-top: 7%;
+}

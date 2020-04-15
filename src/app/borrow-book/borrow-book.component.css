@@ -5,3 +5,7 @@
 textarea {
     height: auto;
 }
+
+div.btn-toolbar{
+    padding-top: 7%;
+}
